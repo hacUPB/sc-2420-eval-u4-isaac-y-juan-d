@@ -4,3 +4,12 @@
 Estudiante:  
 Id:  
 ---
+# Documentacion de ejercicios
+
+
+## Ejercicio 5
+
+En este ejercicio se tiene un codigo el cual el ejecutarse no pasa nada
+![image](https://github.com/user-attachments/assets/db569554-458c-4d45-893c-0cc8cba7eba7)
+
+y pues al analizar el codigo nos damos cuenta que es porque el hilo principal se cierra antes de que los otros hilos puedan hacer algo, lo que se puede hacer es tilizar una funcion join para que el programa espere que se ejecuten ambos hilos antes de cerrarse. 
