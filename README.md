@@ -214,8 +214,7 @@ Para resolver esto sin usar otra API de SDL2, podemos utilizar un semáforo para
 
 #### Implementación del Semáforo
 
-´´´c
-
+    ´´´c
       #include <stdio.h>
       #include <stdbool.h>
       #include <SDL.h>
