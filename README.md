@@ -214,7 +214,7 @@ Para resolver esto sin usar otra API de SDL2, podemos utilizar un semáforo para
 
 #### Implementación del Semáforo
 
-    ´´´c
+ ```c
       #include <stdio.h>
       #include <stdbool.h>
       #include <SDL.h>
@@ -511,6 +511,7 @@ Para resolver esto sin usar otra API de SDL2, podemos utilizar un semáforo para
           return 0;
       }
 
-  ´´´
+  ```
+
   El semáforo asegura que la reproducción del sonido no interfiera con el flujo del juego y se ejecute cuando se produzca el evento, resolviendo el problema de sincronización sin bloquear el juego.
 
