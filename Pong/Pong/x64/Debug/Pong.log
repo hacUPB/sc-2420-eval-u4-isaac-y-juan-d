@@ -1,0 +1,5 @@
+﻿  main.c
+C:\Users\USER\Documents\src\Pong\Pong\main.c(88,21): warning C4098: 'play_audio': función 'void' que devuelve un valor
+C:\Users\USER\Documents\src\Pong\Pong\main.c(106,20): warning C4087: 'SDL_CloseAudio': se ha declarado con la lista de parámetros 'void'
+C:\Users\USER\Documents\src\Pong\Pong\main.c(205,59): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  Pong.vcxproj -> C:\Users\USER\Documents\src\Pong\x64\Debug\Pong.exe
