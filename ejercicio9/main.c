@@ -32,4 +32,4 @@ return 4;
 }
 printf("Shared variable value: %d\n",shared);
 return 0;
-}git 
+}
