@@ -1,0 +1,5 @@
+﻿  main.c
+C:\Users\USER\Documents\Pong\Pong\main.c(199,27): warning C4305: '*=': truncamiento de 'double' a 'float'
+C:\Users\USER\Documents\Pong\Pong\main.c(200,27): warning C4305: '*=': truncamiento de 'double' a 'float'
+C:\Users\USER\Documents\Pong\Pong\main.c(181,59): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  Pong.vcxproj -> C:\Users\USER\Documents\Pong\x64\Debug\Pong.exe
