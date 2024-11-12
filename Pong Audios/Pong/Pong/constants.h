@@ -7,3 +7,10 @@
 #define FPS 30
 #define FRAME_TARGET_TIME (1000/FPS)
 
+#define NUM_ROWS 5
+#define NUM_COLS 10
+#define BRICK_WIDTH (WINDOW_WIDTH / NUM_COLS)
+#define BRICK_HEIGHT 30
+
+#define MAX_AUDIO_EVENTS 10
+

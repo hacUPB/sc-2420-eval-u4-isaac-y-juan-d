@@ -32,15 +32,11 @@ typedef struct {
     bool destroyed; // Si el ladrillo está destruido o no
 } Brick;
 
-#define NUM_ROWS 5
-#define NUM_COLS 10
-#define BRICK_WIDTH (WINDOW_WIDTH / NUM_COLS)
-#define BRICK_HEIGHT 30
 
 Brick bricks[NUM_ROWS][NUM_COLS];
 
 
-#define MAX_AUDIO_EVENTS 10
+
 
 AudioContext wallHitAudio, paddleHitAudio, loseAudio, brickHitAudio, sonidoganar;
 SDL_AudioSpec audioSpec;
@@ -140,6 +136,8 @@ void process_input(void) {
     case SDL_KEYUP:
         if (event.key.keysym.sym == SDLK_LEFT)
             paddle.vel_x = 0;
+            play_audio(&brickHitAudio);
+            
         if (event.key.keysym.sym == SDLK_RIGHT)
             paddle.vel_x = 0;
         break;
@@ -261,7 +259,7 @@ void update(void)
 
                     // Rebotar la pelota
                     ball.vel_y = -ball.vel_y;
-                    play_audio(&wallHitAudio); // Sonido de colisión con ladrillo
+                    play_audio(&brickHitAudio);
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿  main.c
-C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(168,38): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(169,38): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(246,27): warning C4305: '*=': truncamiento de 'double' a 'float'
-C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(247,27): warning C4305: '*=': truncamiento de 'double' a 'float'
-C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(228,59): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(166,38): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(167,38): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(244,27): warning C4305: '*=': truncamiento de 'double' a 'float'
+C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(245,27): warning C4305: '*=': truncamiento de 'double' a 'float'
+C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\Pong\main.c(226,59): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
   Pong.vcxproj -> C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\x64\Debug\Pong.exe
