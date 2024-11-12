@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\USER\Documents\Pong\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\USER\Documents\Pong\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,7 +112,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\USER\Documents\Pong\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Usuario\Documents\sc-2420-eval-u4-isaac-y-juan-d\Pong Audios\Pong\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

@@ -24,9 +24,25 @@ struct game_object {
     float vel_y;
 } ball, paddle;
 
+typedef struct {
+    float x;
+    float y;
+    float width;
+    float height;
+    bool destroyed; // Si el ladrillo está destruido o no
+} Brick;
+
+#define NUM_ROWS 5
+#define NUM_COLS 10
+#define BRICK_WIDTH (WINDOW_WIDTH / NUM_COLS)
+#define BRICK_HEIGHT 30
+
+Brick bricks[NUM_ROWS][NUM_COLS];
+
+
 #define MAX_AUDIO_EVENTS 10
 
-AudioContext wallHitAudio, paddleHitAudio, loseAudio;
+AudioContext wallHitAudio, paddleHitAudio, loseAudio, brickHitAudio, sonidoganar;
 SDL_AudioSpec audioSpec;
 SDL_AudioDeviceID audioDevice;
 SDL_sem* audioSemaphore;
@@ -61,6 +77,8 @@ void setup_audio_files() {
     load_audio("Sound1.wav", &wallHitAudio);
     load_audio("Sound4.wav", &paddleHitAudio);
     load_audio("Sound3.wav", &loseAudio);
+    load_audio("Sound2.wav", &brickHitAudio);
+    load_audio("Sound5.wav", &sonidoganar);
 }
 
 
@@ -115,9 +133,9 @@ void process_input(void) {
         if (event.key.keysym.sym == SDLK_ESCAPE)
             game_is_running = false;
         if (event.key.keysym.sym == SDLK_LEFT)
-            paddle.vel_x = -400;
+            paddle.vel_x = -700;
         if (event.key.keysym.sym == SDLK_RIGHT)
-            paddle.vel_x = +400;
+            paddle.vel_x = +700;
         break;
     case SDL_KEYUP:
         if (event.key.keysym.sym == SDLK_LEFT)
@@ -131,8 +149,8 @@ void setup(void) {
     // Inicialización de valores de la pelota
     ball.width = 15;
     ball.height = 15;
-    ball.x = 20;
-    ball.y = 20;
+    ball.x = (WINDOW_WIDTH / 2) - (ball.width / 2); // Centrado en la pantalla
+    ball.y = paddle.y - ball.height; // Justo encima de la paleta
     ball.vel_x = 300;
     ball.vel_y = 300;
 
@@ -143,7 +161,19 @@ void setup(void) {
     paddle.y = WINDOW_HEIGHT - 40;
     paddle.vel_x = 0;
     paddle.vel_y = 0;
+
+    // Inicializar ladrillos 
+    for (int row = 0; row < NUM_ROWS; row++) {
+        for (int col = 0; col < NUM_COLS; col++) {
+            bricks[row][col].x = col * BRICK_WIDTH;
+            bricks[row][col].y = row * BRICK_HEIGHT;
+            bricks[row][col].width = BRICK_WIDTH;
+            bricks[row][col].height = BRICK_HEIGHT;
+            bricks[row][col].destroyed = false;
+        }
+    }
 }
+
 void render(void) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -165,6 +195,22 @@ void render(void) {
         (int)paddle.width,
         (int)paddle.height
     };
+
+    // Dibujar los ladrillos
+    for (int row = 0; row < NUM_ROWS; row++) {
+        for (int col = 0; col < NUM_COLS; col++) {
+            if (!bricks[row][col].destroyed) {
+                SDL_Rect brick_rect = {
+                    (int)bricks[row][col].x,
+                    (int)bricks[row][col].y,
+                    (int)bricks[row][col].width,
+                    (int)bricks[row][col].height
+                };
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rojo para los ladrillos
+                SDL_RenderFillRect(renderer, &brick_rect);
+            }
+        }
+    }
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer, &paddle_rect);
 
@@ -172,7 +218,8 @@ void render(void) {
 }
 
 
-void update(void) {
+void update(void) 
+{
     int time_to_wait = FRAME_TARGET_TIME - (SDL_GetTicks() - last_frame_time);
 
     if (time_to_wait > 0 && time_to_wait <= FRAME_TARGET_TIME)
@@ -200,14 +247,39 @@ void update(void) {
         ball.vel_y *= 1.05;
         play_audio(&paddleHitAudio);
     }
+    // Colisiones con los ladrillos
+    for (int row = 0; row < NUM_ROWS; row++) {
+        for (int col = 0; col < NUM_COLS; col++) {
+            if (!bricks[row][col].destroyed) {
+                if (ball.x + ball.width > bricks[row][col].x &&
+                    ball.x < bricks[row][col].x + bricks[row][col].width &&
+                    ball.y + ball.height > bricks[row][col].y &&
+                    ball.y < bricks[row][col].y + bricks[row][col].height) {
+
+                    // Marcar el ladrillo como destruido
+                    bricks[row][col].destroyed = true;
+
+                    // Rebotar la pelota
+                    ball.vel_y = -ball.vel_y;
+                    play_audio(&wallHitAudio); // Sonido de colisión con ladrillo
+                }
+            }
+        }
+    }
 
     if (ball.y + ball.height > WINDOW_HEIGHT) {
         play_audio(&loseAudio);
         ball.x = WINDOW_WIDTH / 2;
-        ball.y = 0;
+        ball.y = WINDOW_HEIGHT / 2;
         ball.vel_x = 300;
         ball.vel_y = 300;
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                bricks[row][col].destroyed = false;
+            }
+        }
     }
+    
 }
 int initialize_window(void) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
